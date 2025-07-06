@@ -1,0 +1,8 @@
+house
+chart
+votes
+zones
+apple
+loner
+crypt
+apron
