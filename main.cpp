@@ -1,12 +1,8 @@
 #include <iostream>
-#include <vector>
-#include <string>
-#include <algorithm>
-#include <cctype>
-#include<words.txt>
+#include "wordle.h"
 
-using namespace std;
 
 int main(int , char**){
-    cout << "welcome to the wordle game.";
+    std::cout << "welcome to the wordle game.";
+    Wordle my_game = Wordle();
 }
