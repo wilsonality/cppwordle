@@ -8,7 +8,7 @@ public:
     Wordle();
     ~Wordle();
     int game_routine();
-    int check_guess(char* guess);
+    char* check_guess(char* g, char* s);
     char* fetch_solution(int len);
 
   // member variables
