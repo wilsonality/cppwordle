@@ -8,11 +8,12 @@ public:
     Wordle();
     ~Wordle();
     int game_routine();
-    int check_guess(std::string guess);
+    int check_guess(char* guess);
+    char* fetch_solution(int len);
 
   // member variables
     int guess_ct;
     int game_num;
     int word_length;
-    char solution[7];
+    char* solution;
 };
