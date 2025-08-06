@@ -1,7 +1,7 @@
 #include "wordle.h"
 #include <iostream>
 #include <cstdlib>
-#include <cstring>
+#include <string>
 #include <set>
 
 using namespace std;
@@ -60,44 +60,40 @@ int Wordle::game_routine(){
     return 0;
 };
 
-char* Wordle::fetch_solution(int len){
+std::string Wordle::fetch_solution(int len){
     // returns pointer to a char[] that is the solution
     // this ptr is stored to fetched
 
-    char* fetched = (char *)malloc(sizeof(char) * len); // allocate size for solution word
+    std::string fetched = "LONER"; // allocate size for solution word
 
-    // assume we pick a word at random from our data
-    char def_solution[] = "loner";
+    // assume we pick a word at random from our data, default for now is LONER
 
     // copy to fetched, and return
-    strcpy(def_solution, fetched);
 
     return fetched;
 }
 
-char* Wordle::check_guess(char* g, char* s){
+std::string Wordle::check_guess(std::string g, std::string s){
     /** scan until end of guess (given by word_length)
         if we encounter null, or fail to encounter at
         index word_length, guess is invalid
      */
-    // two ptrs for each array
-    char* i = g;
-    char* j = s;
-    char* result = (char *)malloc(sizeof(char) * (word_length + 1));
 
-    
+    int i = 0; // guess index
+    int j = 0; // solution index
+    std::string result;
+
         // copy letters of solution to a set
         std::set<char> myset;
-        while (*j != '0'){
-            myset.insert(*j);
-            j++;
+        for (std::string::iterator it = s.begin(); it != s.end(); ++it){ // uses an iterator
+            myset.insert(s[j]);
         };
 
 
     // reset solution ptr
-    j = s;
+    j = 0;
 
-     while (*i != '\0' && *j != '\0'){
+     while (g[g_i] != '\0' && *j != '\0'){
         // while both can be read
 
         if (*i == *j){ // if char ptrs are the same

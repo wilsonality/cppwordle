@@ -1,16 +1,16 @@
 #%.o: %.cpp
 #	$(CC) $(CFLAGS) - $< -o $@
 
-all: my_program
+all: program
 
-my_program: main.o wordle.o
-	g++ $@ -o $^
+program: main.o wordle.o
+	g++ -o $@ $^
 
-main.o: wordle.h main.cpp
-	$(CC) $(CFLAGS) - $< -o $@
+main.o: main.cpp
+	g++ -c $<
 
 wordle.o: wordle.cpp
-	$(CC) $(CFLAGS) - $< -o $@
+	g++ -c $<
 
-clear:
-	rm -f *.o my_program
+clean:
+	rm -f *.o program
