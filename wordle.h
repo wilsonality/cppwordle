@@ -8,7 +8,7 @@ public:
     Wordle();
     ~Wordle();
     int game_routine();
-    std::string check_guess(char* g, char* s);
+    std::string check_guess(std::string g, std::string s);
     std::string fetch_solution(int len);
 
   // member variables

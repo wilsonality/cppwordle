@@ -54,7 +54,14 @@ int Wordle::game_routine(){
         cin >> cur_guess;
 
         // exception handling needed, for when 0 is returned
-        check_guess(cur_guess, solution);
+        try{
+            if (check_guess(cur_guess, solution) == "\0"){
+                throw;
+            };}
+        catch(out_of_range){
+            printf("GAME: ERROR. Mismatched length between guess and solution");
+        }
+        
     }
 
     return 0;
@@ -80,49 +87,40 @@ std::string Wordle::check_guess(std::string g, std::string s){
      */
 
     int i = 0; // guess index
-    int j = 0; // solution index
-    std::string result;
+    std::string result = ""; // colors will be appended to the string
 
         // copy letters of solution to a set
         std::set<char> myset;
         for (std::string::iterator it = s.begin(); it != s.end(); ++it){ // uses an iterator
-            myset.insert(s[j]);
+            myset.insert(s[i]);
         };
 
 
     // reset solution ptr
-    j = 0;
+    i = 0;
 
-     while (g[g_i] != '\0' && *j != '\0'){
+     while (g[i] != '\0' && s[i] != '\0'){
         // while both can be read
 
-        if (*i == *j){ // if char ptrs are the same
-            *result = 'G';
+        if (g[i] == s[i]){ // if char ptrs are the same
+            result.push_back('G');
         }
-        else if (*i != *j){ // else they differ
-            if (myset.find(*i) == myset.end()){ // i not contained in solution 
-                *result = 'X';
+        else if (g[i] != s[i]){ // else they differ
+            if (myset.find(g[i]) == myset.end()){ // i not contained in solution 
+                result.push_back('X');
             }
-            if (myset.find(*i) != myset.end()){
-                *result = 'Y';
+            if (myset.find(g[i]) != myset.end()){
+                result.push_back('Y');
             }
         }
         i++;
-        j++;
-        result++;
      }
 
 
-     if (*i != '\0' || *j != '\0'){
+     if (g[i] != '\0' || s[i] != '\0'){
         // if only one ptr is null
-        printf("GAME: Mismatched length between guess and solution");
         return 0;
      }
-
-     // reset result ptr by decrementing it
-     for (int n = (word_length + 1); n > 0; n--){
-        result--;
-     };
 
     return result;
 };

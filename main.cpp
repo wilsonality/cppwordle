@@ -9,7 +9,7 @@ int main(){
 
     cout << "game beginning...";
 
-    Wordle mygame;
+    Wordle mygame();
     
     return 0;
 }

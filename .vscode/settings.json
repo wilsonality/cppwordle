@@ -46,6 +46,7 @@
         "sstream": "cpp",
         "stack": "cpp",
         "variant": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "set": "cpp"
     }
 }
